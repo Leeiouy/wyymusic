@@ -5,17 +5,16 @@
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
+
   </div>
 </template>
 <script>
 import navBar from "common/navBar/navBar.vue";
 
-import loading from "common/loading/loading.vue";
 export default {
   name: "App",
   components: {
-    navBar,
-    loading
+    navBar
   },
   props: {},
   data() {
@@ -30,7 +29,5 @@ export default {
 </script>
 
 <style lang='less'>
-
 @import url("assets/css/base.css");
-
 </style>

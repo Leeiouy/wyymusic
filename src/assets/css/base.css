@@ -8,10 +8,13 @@
     width: 95%;
     margin: 0 auto
 }
-.iconfont{
-    font-size: 20px !important;
-}
+
 
 @import '//at.alicdn.com/t/font_1727471_0tynv6ym2l8.css';
+
+.iconfont {
+    font-size: 20px
+}
+
 
 @import './normalize.css'

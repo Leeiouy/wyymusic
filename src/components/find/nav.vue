@@ -1,6 +1,6 @@
 <template>
   <div class="findNav">
-    <div v-for="(item, index) in navs" :key="item.index">
+    <div v-for="(item, index) in navs" :key="item.index" @click="navClick(item)">
       <div class="navItem">
         <i class="iconfont" :class="item.icon"></i>
       </div>
@@ -26,7 +26,14 @@ export default {
   },
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+    navClick(item){
+
+      
+      console.log(item.title);
+
+    }
+  },
   created() {},
   mounted() {}
 };
