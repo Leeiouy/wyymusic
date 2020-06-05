@@ -5,9 +5,13 @@ vue.use(vueRouter)
 
 
 const routes = [{
-    path: '',
-    redirect: '/home'
-},
+        path: '',
+        redirect: '/find'
+    },
+    {
+        path: '/find',
+        component: () => import('views/find.vue')
+    }
 ]
 
 const router = new vueRouter({

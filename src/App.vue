@@ -1,14 +1,21 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <navBar></navBar>
+
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 <script>
+import navBar from "common/navBar/navBar.vue";
 
+import loading from "common/loading/loading.vue";
 export default {
   name: "App",
   components: {
-
+    navBar,
+    loading
   },
   props: {},
   data() {
@@ -22,6 +29,8 @@ export default {
 };
 </script>
 
-<style lang='less' scoped>
+<style lang='less'>
+
 @import url("assets/css/base.css");
+
 </style>
