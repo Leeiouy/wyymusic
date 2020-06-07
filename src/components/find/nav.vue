@@ -27,11 +27,8 @@ export default {
   watch: {},
   computed: {},
   methods: {
-    navClick(item){
-
-      
+    navClick(item) {
       console.log(item.title);
-
     }
   },
   created() {},
@@ -42,6 +39,7 @@ export default {
 <style lang='less' scoped>
 .findNav {
   margin-top: 10px;
+  margin-bottom: 10px;
   display: flex;
   justify-content: space-around;
   text-align: center;
@@ -50,7 +48,7 @@ export default {
     height: 50px;
     line-height: 50px;
     border-radius: 50%;
-    background-color: #c4342f;
+    background-color: #d43c33;
     color: white;
   }
   p {

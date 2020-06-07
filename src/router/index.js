@@ -11,6 +11,10 @@ const routes = [{
     {
         path: '/find',
         component: () => import('views/find.vue')
+    },
+    {
+        path: '/yuncun',
+        component: () => import('views/yuncun.vue')
     }
 ]
 

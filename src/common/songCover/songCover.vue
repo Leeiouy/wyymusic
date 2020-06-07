@@ -1,12 +1,18 @@
 <template>
-  <div class="songCover"></div>
+  <div class="songCover">
+    <img :src="imgUrl" alt />
+    <span>
+      <i class="iconfont wyybofangsanjiaoxing"></i>
+      {{ count }}
+    </span>
+  </div>
 </template>
 
 <script>
 export default {
   components: {},
   props: {
-    img: {
+    imgUrl: {
       type: String,
       default() {
         return null;
@@ -32,20 +38,18 @@ export default {
 
 <style lang='less' scoped>
 .songCover {
-  width: 200px;
   position: relative;
   img {
-    position: absolute;
     width: 100%;
   }
   span {
-    position: absolute;
-    top: 5px;
-    right: 10%;
     color: white;
-    font-size: 14px;
+    position: absolute;
+    top: 5%;
+    right: 10%;
+    font-size: 12px;
     .iconfont {
-      font-size: 14px;
+      font-size: 12px;
     }
   }
 }

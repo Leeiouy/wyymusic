@@ -8,7 +8,12 @@
 import betterBscroll from "better-scroll";
 export default {
   components: {},
-  props: {},
+  props: {
+    scrollX: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {};
   },
@@ -18,7 +23,8 @@ export default {
   created() {},
   mounted() {
     this.Bscroll = new betterBscroll(this.$refs.Bscroll, {
-      click: true
+      click: true,
+      scrollX: this.scrollX
     });
   }
 };

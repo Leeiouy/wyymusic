@@ -5,7 +5,6 @@
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
-
   </div>
 </template>
 <script>
@@ -29,5 +28,11 @@ export default {
 </script>
 
 <style lang='less'>
+#app {
+  // max-width: 375px;
+  margin: 0 auto;
+}
+
 @import url("assets/css/base.css");
+@import url("assets/css/common.css");
 </style>
