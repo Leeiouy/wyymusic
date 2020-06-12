@@ -1,5 +1,5 @@
 <template>
-  <div id="yuncun" v-if="show">
+  <div id="yuncun" class="mainPage" v-if="show">
     <div
       class="bg"
       :style="{'background-image': 'url('+hotComment[indexPage].simpleUserInfo.avatar+')'}"
@@ -16,7 +16,9 @@
       :show-indicators="false"
       :lazy-render="true"
       :loop="false"
+      :touchable="disableTouch"
       @change="onChange"
+      :duration="1000"
     >
       <van-swipe-item v-for="(item, index) in hotComment" :key="item.index">
         <div class="details">
@@ -37,14 +39,22 @@ export default {
     return {
       show: false,
       hotComment: null,
-      indexPage: 1
+      indexPage: 1,
+      disableTouch: true
     };
   },
   watch: {},
   computed: {},
   methods: {
     onChange(index) {
-      this.indexPage = index + 1;
+      // 防止切换过快，css动画未结束发生闪白,每次切换禁用触摸，500ms恢复触摸
+      if (this.disableTouch == true) {
+        this.disableTouch = false;
+        this.indexPage = index + 1;
+        setTimeout(() => {
+          this.disableTouch = true;
+        }, 1000);
+      }
     }
   },
   created() {
@@ -67,24 +77,24 @@ export default {
   position: relative;
   .bg {
     width: 100vw;
-    transition: all 0.3s;
+    transition: all 0.1s;
     height: calc(100vh - 46px);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    filter: blur(40px) brightness(70%);
+    filter: blur(70px) brightness(30%);
   }
   .page {
     position: absolute;
     z-index: 1;
-    top: 2%; 
+    top: 46px;
     right: 8%;
     color: rgba(255, 255, 255, 0.7);
   }
   .my-swipe {
     position: absolute;
     z-index: 1;
-    top: 0;
+    top: 46px;
     left: 0;
     right: 0;
     bottom: 0;

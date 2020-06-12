@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <navBar></navBar>
+    <navBar v-show="navBarShow"></navBar>
 
-    <keep-alive>
+    <keep-alive exclude="songList">
       <router-view></router-view>
     </keep-alive>
   </div>
@@ -17,10 +17,27 @@ export default {
   },
   props: {},
   data() {
-    return {};
+    return {
+      // navBarShow: true
+    };
   },
   watch: {},
-  computed: {},
+  computed: {
+    navBarShow() {
+      // 判断path
+      let path = this.$route.path;
+      if (
+        path == "/profile" ||
+        path == "/find" ||
+        path == "/yunCun" ||
+        path == "/videos"
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
   methods: {},
   created() {},
   mounted() {}
@@ -29,8 +46,11 @@ export default {
 
 <style lang='less'>
 #app {
-  // max-width: 375px;
-  margin: 0 auto;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 @import url("assets/css/base.css");

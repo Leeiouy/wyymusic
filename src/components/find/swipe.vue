@@ -38,7 +38,8 @@ export default {
       this.banners = res.data.banners;
     });
   },
-  mounted() {}
+  mounted() {
+  }
 };
 </script>
 

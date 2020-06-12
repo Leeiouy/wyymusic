@@ -1,10 +1,22 @@
 <template>
-  <div class="newSong">11</div>
+  <div class="newSong">
+    <findTitle>
+      <template #smallTitle>
+        <p>推荐歌单</p>
+      </template>
+      <template #bigTitle>
+        <span>为你精挑细选</span>
+      </template>
+    </findTitle>
+  </div>
 </template>
 
 <script>
+import findTitle from "components/find/common/title.vue";
 export default {
-  components: {},
+  components: {
+    findTitle
+  },
   props: {},
   data() {
     return {};
@@ -18,4 +30,5 @@ export default {
 </script>
 
 <style lang='less' scoped>
+
 </style>

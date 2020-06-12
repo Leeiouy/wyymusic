@@ -15,7 +15,15 @@ const routes = [{
     {
         path: '/yuncun',
         component: () => import('views/yuncun.vue')
+    }, {
+        path: '/porfile',
+        component: () => import('views/porfile.vue')
+    }, {
+        path: "/songLIst/:id",
+        name: 'songList',
+        component: () => import('common/songList/songList.vue')
     }
+
 ]
 
 const router = new vueRouter({

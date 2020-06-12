@@ -58,7 +58,6 @@ export default {
         //只有当前titleAcive不等于index时候才会执行切换
         this.titleAcive = index;
         this.$router.push(path);
-
       }
     }
   },
@@ -68,16 +67,28 @@ export default {
 </script>
 
 <style lang='less' scoped>
-.titles {
-  display: flex;
-  justify-content: space-between;
-  div {
-    margin: 0 10px;
+.navBar {
+  .van-nav-bar {
+    background-color: transparent !important;
   }
-}
-.titleActive {
-  font-size: 17px;
-  font-weight: 700;
-  transition: all 0.1s;
+  .van-hairline--bottom::after {
+    border: none !important;
+  }
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  .titles {
+    display: flex;
+    justify-content: space-between;
+    div {
+      margin: 0 10px;
+    }
+  }
+  .titleActive {
+    font-size: 17px;
+    font-weight: 700;
+    transition: all 0.1s;
+  }
 }
 </style>

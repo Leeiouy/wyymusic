@@ -1,8 +1,16 @@
 <template>
   <div class="findTitle">
-    <p class="smallTitle">推荐歌单</p>
+
+    <div class="smallTitle">
+      <slot name="smallTitle"></slot>
+    </div>
+
     <div class="clear-fix">
-      <span class="left bigTitle">为你精挑细选</span>
+
+      <div class="left bigTitle">
+        <slot name="bigTitle"></slot>
+      </div>
+      
       <button class="right btn">查看更多</button>
     </div>
   </div>
@@ -25,10 +33,10 @@ export default {
 
 <style lang='less' scoped>
 .findTitle {
-  margin: 3px 0;
+ padding-top: 10px;
   .bigTitle {
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 800;
     line-height: 22px;
   }
   .btn {

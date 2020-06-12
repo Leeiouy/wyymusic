@@ -1,6 +1,13 @@
 <template>
   <div class="findSongList" v-if="show">
-    <findTitle></findTitle>
+    <findTitle>
+      <template #smallTitle>
+        <p>推荐歌单</p>
+      </template>
+      <template #bigTitle>
+        <span>为你精挑细选</span>
+      </template>
+    </findTitle>
 
     <Bscroll ref="Bscroll" class="Bscroll" :scrollX="true">
       <template #content>
@@ -27,7 +34,7 @@ import songCover from "common/songCover/songCover.vue";
 
 import Bscroll from "common/better_scroll/better_scroll.vue";
 
-import findTitle from "components/find/title.vue";
+import findTitle from "components/find/common/title.vue";
 export default {
   components: {
     songCover,
@@ -45,7 +52,7 @@ export default {
   computed: {},
   methods: {
     itemClick(id) {
-      console.log(id);
+      this.$router.push("/songList/" + id);
     }
   },
   created() {
@@ -61,10 +68,14 @@ export default {
         this.show = true;
       })
       .then(res => {
-        this.$refs.Bscroll.Bscroll.refresh();
+        this.$nextTick(() => {
+          this.$refs.Bscroll.Bscroll.refresh();
+        });
       });
   },
-  mounted() {}
+  mounted() {
+ 
+  }
 };
 </script>
 
@@ -83,6 +94,9 @@ export default {
     margin-right: 7px;
     border-radius: 5px 5px 5px 5px;
     overflow: hidden;
+    .van-multi-ellipsis--l2 {
+      font-size: 13px;
+    }
   }
 }
 </style>

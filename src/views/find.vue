@@ -4,7 +4,7 @@
 
     <findNav></findNav>
 
-    <songList></songList>
+    <songSheet></songSheet>
 
     <newSong></newSong>
   </div>
@@ -15,14 +15,14 @@ import findSwipe from "components/find/swipe.vue";
 
 import findNav from "components/find/nav.vue";
 
-import songList from "components/find/songList.vue";
+import songSheet from "components/find/songSheet.vue";
 
 import newSong from "components/find/newSong.vue";
 export default {
   components: {
     findSwipe,
     findNav,
-    songList,
+    songSheet,
     newSong
   },
   props: {},
