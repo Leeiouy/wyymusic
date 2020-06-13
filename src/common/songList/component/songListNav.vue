@@ -1,8 +1,16 @@
 <template>
   <div class="songListNav">
-    <van-nav-bar @click-left="onClickLeft" @click-right="onClickRight">
+    <van-nav-bar
+      :fixed="true"
+      :border="false"
+      @click-left="onClickLeft"
+      @click-right="onClickRight"
+    >
       <template #left>
         <i class="iconfont wyyarrow-left"></i>
+      </template>
+
+      <template #title>
         <span>歌单</span>
       </template>
 
@@ -36,11 +44,13 @@ export default {
 </script>
 
 <style lang='less' scoped>
-.songListNav{
-    span{
-        padding-left: 5%;
-        font-size: 14px;
-        font-weight: 600;
-    }
+.van-nav-bar {
+  background-color: transparent !important;
+  i {
+    color: white;
+  }
+  span {
+    color: white;
+  }
 }
 </style>

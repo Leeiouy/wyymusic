@@ -16,11 +16,11 @@ export default {
   data() {
     return {
       navs: [
-        { icon: "wyyrili", title: "每日推荐" },
-        { icon: "wyyliebiao", title: "歌单" },
-        { icon: "wyyicon-1", title: "排行榜" },
-        { icon: "wyydiantai", title: "电台" },
-        { icon: "wyyzhibo", title: "直播" }
+        { icon: "wyyrili", title: "每日推荐", path: "/recommand" },
+        { icon: "wyyliebiao", title: "歌单", path: "/hotSongList" },
+        { icon: "wyyicon-1", title: "排行榜", path: "/topList" },
+        { icon: "wyydiantai", title: "电台", path: "/aa" },
+        { icon: "wyyzhibo", title: "直播", path: "/aa" }
       ]
     };
   },
@@ -28,6 +28,7 @@ export default {
   computed: {},
   methods: {
     navClick(item) {
+      this.$router.push(item.path)
       console.log(item.title);
     }
   },

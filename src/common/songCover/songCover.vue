@@ -1,10 +1,12 @@
 <template>
   <div class="songCover">
     <img :src="imgUrl" alt />
-    <span>
+    <span v-if="count" class="count">
       <i class="iconfont wyybofangsanjiaoxing"></i>
       {{ count }}
     </span>
+
+    <span class="mes" v-if="mes">{{ mes }}</span>
   </div>
 </template>
 
@@ -23,6 +25,10 @@ export default {
       default() {
         return 0;
       }
+    },
+    mes: {
+      type: String,
+      default: ""
     }
   },
   data() {
@@ -39,10 +45,14 @@ export default {
 <style lang='less' scoped>
 .songCover {
   position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 3px;
   img {
     width: 100%;
+    display: block;
   }
-  span {
+  .count {
     color: white;
     position: absolute;
     top: 5%;
@@ -51,6 +61,12 @@ export default {
     .iconfont {
       font-size: 12px;
     }
+  }
+  .mes {
+    position: absolute;
+    left: 5%;
+    bottom: 5px;
+    color: white;
   }
 }
 </style>

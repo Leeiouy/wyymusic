@@ -59,19 +59,16 @@ export default {
     this.$nextTick(() => {
       this.$refs.Bscroll.Bscroll.refresh();
     });
-    window.onresize = () => {
-      this.$refs.Bscroll.Bscroll.refresh();
-      console.log(1);
-    };
   }
 };
 </script>
 
 <style lang='less' scoped>
 .list {
+  background-color: white;
   .Bscroll {
     width: 100vw;
-    height: calc(100vh - 46px);
+    height: 50vh;
   }
   .item {
     width: 96%;
@@ -79,6 +76,11 @@ export default {
     height: 44px;
     display: flex;
     align-items: center;
+    &:active {
+      transition: all 0.5s;
+      opacity: 0.7;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
     .index {
       width: 10%;
       text-align: center;
@@ -98,11 +100,6 @@ export default {
         color: #a4b0be;
       }
     }
-  }
-  .item:active {
-    transition: all 0.5s;
-    opacity: 0.7;
-    background-color: rgba(0, 0, 0, 0.2);
   }
 }
 </style>

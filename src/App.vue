@@ -46,6 +46,8 @@ export default {
 
 <style lang='less'>
 #app {
+  max-width: 768px;
+  margin: 0 auto;
   position: relative;
   top: 0;
   left: 0;
