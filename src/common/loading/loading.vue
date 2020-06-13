@@ -1,6 +1,6 @@
 <template>
   <div id="loading">
-    <van-loading size="24px" vertical>加载中...</van-loading>
+    <van-loading size="24px" vertical color="#c4342f">加载中...</van-loading>
   </div>
 </template>
 
@@ -20,8 +20,9 @@ export default {
 </script>
 
 <style lang='less' scoped>
-#loading{
+#loading {
   position: relative;
+  width: 100%;
   z-index: 10;
   top: 30vh;
 }

@@ -1,17 +1,17 @@
 <template>
   <div class="playList">
     <playListNav></playListNav>
-    <playListTab></playListTab>
+    <playListTabS></playListTabS>
   </div>
 </template>
 
 <script>
 import playListNav from "./component/playListNav";
-import playListTab from "./component/playListTab";
+import playListTabS from "./component/playListTabS";
 export default {
   components: {
     playListNav,
-    playListTab
+    playListTabS
   },
   props: {},
   data() {

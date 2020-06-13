@@ -16,8 +16,8 @@ const routes = [{
         path: '/yuncun',
         component: () => import('views/yuncun.vue')
     }, {
-        path: '/porfile',
-        component: () => import('views/porfile.vue')
+        path: '/profile',
+        component: () => import('views/profile.vue')
     }, {
         path: "/songLIst/:id",
         name: 'songList',

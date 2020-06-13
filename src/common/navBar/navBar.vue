@@ -32,7 +32,7 @@ export default {
       titles: [
         {
           title: "我的",
-          path: "/porfile"
+          path: "/profile"
         },
         {
           title: "发现",

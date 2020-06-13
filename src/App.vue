@@ -29,8 +29,8 @@ export default {
       if (
         path == "/profile" ||
         path == "/find" ||
-        path == "/yunCun" ||
-        path == "/videos"
+        path == "/yuncun" ||
+        path == "/video"
       ) {
         return true;
       } else {

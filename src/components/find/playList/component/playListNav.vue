@@ -30,7 +30,6 @@ export default {
 
 <style lang='less' scoped>
 .playListNav {
-
   .van-nav-bar {
     background-color: transparent !important;
   }
