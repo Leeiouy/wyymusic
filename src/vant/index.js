@@ -4,7 +4,9 @@ import {
     NavBar,
     Loading,
     Swipe,
-    SwipeItem
+    SwipeItem,
+    Tab,
+    Tabs
 } from "vant";
 
 
@@ -13,3 +15,5 @@ Vue.use(NavBar);
 Vue.use(Loading);
 Vue.use(Swipe);
 Vue.use(SwipeItem);
+Vue.use(Tab);
+Vue.use(Tabs);
