@@ -64,7 +64,8 @@ export default {
         request({
           url: "/top/playlist/highquality",
           params: {
-            cat: this.titles[index].title
+            cat: this.titles[index].title,
+            limit: 20
           }
         }).then(res => {
           if (res.status == 200) {
@@ -80,7 +81,8 @@ export default {
     request({
       url: "/top/playlist/highquality",
       params: {
-        cat: this.titles[0].title
+        cat: this.titles[0].title,
+        limit: 20
       }
     }).then(res => {
       if (res.status == 200) {

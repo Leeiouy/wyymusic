@@ -80,9 +80,7 @@ export default {
         this.avatarUrl = result.creator.avatarUrl; //歌单创建者头像
         this.commentCount = result.commentCount; //评论数
         this.shareCount = result.shareCount; //分享数
-
         this.show = true;
-        console.log(result);
       }
     });
   },

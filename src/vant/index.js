@@ -6,7 +6,8 @@ import {
     Swipe,
     SwipeItem,
     Tab,
-    Tabs
+    Tabs,
+    Toast
 } from "vant";
 
 
@@ -17,3 +18,4 @@ Vue.use(Swipe);
 Vue.use(SwipeItem);
 Vue.use(Tab);
 Vue.use(Tabs);
+Vue.use(Toast);

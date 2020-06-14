@@ -51,13 +51,16 @@ export default {
   computed: {},
   methods: {
     itemClick: function(data) {
-      console.log(data.name);
+      console.log(data);
+    },
+    resetHeight() {
+      this.$refs.Bscroll.Bscroll.refresh();
     }
   },
   created() {},
   mounted() {
     this.$nextTick(() => {
-      this.$refs.Bscroll.Bscroll.refresh();
+      this.resetHeight();
     });
   }
 };

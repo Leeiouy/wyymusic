@@ -3,7 +3,7 @@
     <img :src="imgUrl" alt />
     <span v-if="count" class="count">
       <i class="iconfont wyybofangsanjiaoxing"></i>
-      {{ count }}
+      {{ playCount }}
     </span>
 
     <span class="mes" v-if="mes">{{ mes }}</span>
@@ -35,7 +35,15 @@ export default {
     return {};
   },
   watch: {},
-  computed: {},
+  computed: {
+    playCount: function() {
+      if ((this.count + "").length > 4) {
+        return (this.count / 10000).toFixed(0) + "万";
+      } else {
+        return this.count;
+      }
+    }
+  },
   methods: {},
   created() {},
   mounted() {}

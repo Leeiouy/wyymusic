@@ -1,17 +1,15 @@
 <template>
   <div class="findTitle">
-
     <div class="smallTitle">
       <slot name="smallTitle"></slot>
     </div>
 
     <div class="clear-fix">
-
       <div class="left bigTitle">
         <slot name="bigTitle"></slot>
       </div>
-      
-      <button class="right btn">查看更多</button>
+
+      <button class="right btn" @click="clickMore">查看更多</button>
     </div>
   </div>
 </template>
@@ -25,7 +23,11 @@ export default {
   },
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+    clickMore(){
+      this.$router.push('/playList')
+    }
+  },
   created() {},
   mounted() {}
 };
@@ -33,7 +35,7 @@ export default {
 
 <style lang='less' scoped>
 .findTitle {
- padding-top: 10px;
+  padding-top: 10px;
   .bigTitle {
     font-size: 14px;
     font-weight: 800;

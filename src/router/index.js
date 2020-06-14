@@ -31,6 +31,11 @@ const routes = [{
         path: '/playList',
         name: 'playList',
         component: () => import('components/find/playList/playList.vue')
+    },
+    {
+        path: '/comment/:id',
+        name: 'comment',
+        component: () => import('common/comment/comment.vue')
     }
 
 ]

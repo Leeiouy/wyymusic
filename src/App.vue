@@ -2,7 +2,7 @@
   <div id="app">
     <navBar v-show="navBarShow"></navBar>
 
-    <keep-alive exclude="songList">
+    <keep-alive exclude="songList,comment">
       <router-view></router-view>
     </keep-alive>
   </div>

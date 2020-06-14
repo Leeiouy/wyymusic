@@ -16,7 +16,7 @@
       </div>
 
       <div class="options">
-        <div>
+        <div class="comment" @click="comment">
           <i class="iconfont wyypinglun"></i>
           <p>{{ commentCount }}</p>
         </div>
@@ -24,7 +24,7 @@
           <i class="iconfont wyyfenxiang"></i>
           <p>{{ shareCount }}</p>
         </div>
-        <div>
+        <div @click="clickDownload('网页端不支持下载')">
           <i class="iconfont wyyxiazai"></i>
           <p>下载</p>
         </div>
@@ -46,34 +46,42 @@ export default {
   },
   props: {
     imgUrl: {
+      //图片链接
       type: String,
       default: ""
     },
     playCount: {
+      //播放次数
       type: Number,
       default: 0
     },
     title: {
+      //标题
       type: String,
       default: ""
     },
     description: {
+      //描述
       type: String,
       default: ""
     },
     avatarUrl: {
+      //创建歌单者头像图片
       type: String,
       default: ""
     },
     nickname: {
+      //创建歌单者名字
       type: String,
       default: ""
     },
     commentCount: {
+      //评论数量
       type: Number,
       default: 0
     },
     shareCount: {
+      //收藏数量
       type: Number,
       default: 0
     }
@@ -83,7 +91,19 @@ export default {
   },
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+    clickDownload(mes) {
+      this.$toast.fail(mes);
+    },
+    comment() {
+      let songId = this.$route.params.id;
+
+      this.$router.push({
+        path: "/comment/" + songId,
+        
+      });
+    }
+  },
   created() {},
   mounted() {}
 };
@@ -145,6 +165,9 @@ export default {
         width: 22%;
         text-align: center;
         color: white;
+        &:active {
+          opacity: 0.5;
+        }
         p {
           padding-top: 7px;
         }
