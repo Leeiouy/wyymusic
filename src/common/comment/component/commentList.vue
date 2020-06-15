@@ -4,7 +4,7 @@
       <img :src="imgUrl" />
     </div>
 
-    <div class="user right van-hairline--top-bottom">
+    <div class="user right van-hairline--bottom">
       <div class="userName">
         <p class="name">{{ userName }}</p>
         <p class="time">{{ time }}</p>

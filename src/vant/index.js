@@ -7,7 +7,10 @@ import {
     SwipeItem,
     Tab,
     Tabs,
-    Toast
+    Toast,
+    button,
+    form,
+    field
 } from "vant";
 
 
@@ -19,3 +22,6 @@ Vue.use(SwipeItem);
 Vue.use(Tab);
 Vue.use(Tabs);
 Vue.use(Toast);
+Vue.use(button);
+Vue.use(form);
+Vue.use(field);

@@ -14,7 +14,6 @@
     <van-swipe
       class="my-swipe"
       :show-indicators="false"
-      :lazy-render="true"
       :loop="false"
       :touchable="disableTouch"
       @change="onChange"
@@ -76,7 +75,6 @@ export default {
 #yuncun {
   position: relative;
   .bg {
-    width: 100vw;
     transition: all 0.1s;
     height: calc(100vh - 46px);
     background-repeat: no-repeat;
@@ -87,7 +85,7 @@ export default {
   .page {
     position: absolute;
     z-index: 1;
-    top: 46px;
+    top: 60px;
     right: 8%;
     color: rgba(255, 255, 255, 0.7);
   }

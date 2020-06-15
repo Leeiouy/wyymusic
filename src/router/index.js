@@ -6,7 +6,15 @@ vue.use(vueRouter)
 
 const routes = [{
         path: '',
-        redirect: '/find'
+        redirect: '/login'
+    },
+    {
+        path: '/login',
+        component: () => import('common/login/login.vue')
+    },
+    {
+        path: '/login/phone',
+        component: () => import('common/login/phone.vue')
     },
     {
         path: '/find',

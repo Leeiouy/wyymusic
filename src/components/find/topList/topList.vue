@@ -40,13 +40,8 @@ export default {
       console.log(typeof this.topData);
       if (res.status == 200) {
         let result = res.data.list;
-
         this.topData.push(result.splice(0, 4));
-
         this.recommand.push(result);
-
-        console.log(this.topData);
-        console.log(this.recommand);
       }
     });
   },

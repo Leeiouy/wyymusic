@@ -51,6 +51,8 @@ export default {
   computed: {},
   methods: {
     itemClick: function(data) {
+
+      
       console.log(data);
     },
     resetHeight() {

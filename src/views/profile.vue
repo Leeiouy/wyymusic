@@ -1,5 +1,9 @@
 <template>
-  <div id="porfile" class='mainPage'>666</div>
+  <div id="porfile" class="mainPage">
+    <h1>{{ token }}</h1>
+
+
+  </div>
 </template>
 
 <script>
@@ -10,7 +14,11 @@ export default {
     return {};
   },
   watch: {},
-  computed: {},
+  computed: {
+    token: function() {
+      return this.$store.state.Authorization;
+    }
+  },
   methods: {},
   created() {},
   mounted() {}
@@ -18,4 +26,5 @@ export default {
 </script>
 
 <style lang='less' scoped>
+
 </style>

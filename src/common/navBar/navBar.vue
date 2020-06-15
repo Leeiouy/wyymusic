@@ -68,9 +68,9 @@ export default {
 
 <style lang='less' scoped>
 .navBar {
-  .van-nav-bar {
-    background-color: transparent !important;
-  }
+  // .van-nav-bar {
+  //   background-color: transparent !important;
+  // }
   .van-hairline--bottom::after {
     border: none !important;
   }
