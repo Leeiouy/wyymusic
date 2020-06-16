@@ -64,7 +64,7 @@ export default {
 
 <style lang='less' scoped>
 .searchHot {
-  padding-top: 60px;
+  padding-top: 50px;
 }
 .hot {
   > h3 {

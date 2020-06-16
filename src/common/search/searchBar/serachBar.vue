@@ -111,6 +111,7 @@ export default {
 <style lang='less' scoped>
 .searchBar {
   position: fixed;
+  z-index: 10;
   top: 0px;
   left: 0;
   right: 0;
@@ -119,7 +120,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 40px;
-  padding: 10px 0;
+  padding: 10px 0 0 0;
   .searchInput {
     width: 78%;
     height: 40px;

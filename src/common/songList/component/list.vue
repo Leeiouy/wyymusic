@@ -13,9 +13,9 @@
             <div class="detali van-ellipsis">
               <p class="songName">{{ item.name }}</p>
               <p class="Creation">
-                <span class="Album">{{ item.al.name }}</span>
+                <span class="Album">{{ item.al.name}}</span>
                 <span>-</span>
-                <span class="singer">{{ item.ar[0].name }}</span>
+                <span class="singer">{{ item.ar[0].name}}</span>
               </p>
             </div>
 
@@ -51,15 +51,15 @@ export default {
   computed: {},
   methods: {
     itemClick: function(data) {
-
-      
       console.log(data);
     },
     resetHeight() {
       this.$refs.Bscroll.Bscroll.refresh();
     }
   },
-  created() {},
+  created() {
+    console.log(this.playList);
+  },
   mounted() {
     this.$nextTick(() => {
       this.resetHeight();
