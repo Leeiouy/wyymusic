@@ -1,25 +1,20 @@
 <template>
-  <div id="yuncun" class="mainPage" v-if="show">
-    <div
-      class="bg"
-      :style="{'background-image': 'url('+hotComment[indexPage].simpleUserInfo.avatar+')'}"
-    ></div>
+  <div id="yuncun" v-if="show">
     <div class="page">
       <span>{{ indexPage }}</span>
       <span>/</span>
       <span>{{ hotComment.length }}</span>
     </div>
 
-    <!-- v-for style :style里面不能有;号键值要有''括起来 -->
     <van-swipe
       class="my-swipe"
       :show-indicators="false"
       :loop="false"
-      :touchable="disableTouch"
       @change="onChange"
       :duration="1000"
     >
       <van-swipe-item v-for="(item, index) in hotComment" :key="item.index">
+        <div class="bg" :style="{'background-image': 'url('+item.simpleUserInfo.avatar+')'}"></div>
         <div class="details">
           <p>“</p>
           <h2>{{ item.content }}</h2>
@@ -38,22 +33,14 @@ export default {
     return {
       show: false,
       hotComment: null,
-      indexPage: 1,
-      disableTouch: true
+      indexPage: 1
     };
   },
   watch: {},
   computed: {},
   methods: {
     onChange(index) {
-      // 防止切换过快，css动画未结束发生闪白,每次切换禁用触摸，500ms恢复触摸
-      if (this.disableTouch == true) {
-        this.disableTouch = false;
-        this.indexPage = index + 1;
-        setTimeout(() => {
-          this.disableTouch = true;
-        }, 1000);
-      }
+      this.indexPage = index + 1;
     }
   },
   created() {
@@ -73,31 +60,33 @@ export default {
 
 <style lang='less' scoped>
 #yuncun {
-  position: relative;
-  .bg {
-    transition: all 0.1s;
-    height: calc(100vh - 46px);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    filter: blur(70px) brightness(30%);
-  }
   .page {
     position: absolute;
-    z-index: 1;
     top: 60px;
     right: 8%;
+    z-index: 2;
     color: rgba(255, 255, 255, 0.7);
   }
-  .my-swipe {
-    position: absolute;
-    z-index: 1;
-    top: 46px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
+
   .van-swipe-item {
+    position: relative;
+    width: 100vw;
+    height: calc(100vh - 46px);
+    padding-top: 46px;
+    .bg {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transition: 0.1s;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      filter: blur(30px) brightness(60%);
+    }
+
     .details {
       p {
         width: 85%;

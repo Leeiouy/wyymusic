@@ -10,7 +10,8 @@ import {
     Toast,
     button,
     form,
-    field
+    field,
+    Search
 } from "vant";
 
 
@@ -25,3 +26,4 @@ Vue.use(Toast);
 Vue.use(button);
 Vue.use(form);
 Vue.use(field);
+Vue.use(Search)

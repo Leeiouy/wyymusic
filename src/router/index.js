@@ -6,7 +6,7 @@ vue.use(vueRouter)
 
 const routes = [{
         path: '',
-        redirect: '/login'
+        redirect: '/find'
     },
     {
         path: '/login',
@@ -44,8 +44,25 @@ const routes = [{
         path: '/comment/:id',
         name: 'comment',
         component: () => import('common/comment/comment.vue')
-    }
+    }, {
 
+        path: "/search",
+        name: 'search',
+        component: () => import('common/search/search.vue'),
+        children: [{
+                path: '',
+                redirect: "hot"
+            },
+            {
+                path: 'hot',
+                component: () => import('common/search/component/searchHot.vue')
+            },
+            {
+                path: 'result/:id',
+                component: () => import('common/search/component/searchResult.vue')
+            }
+        ]
+    }
 ]
 
 const router = new vueRouter({

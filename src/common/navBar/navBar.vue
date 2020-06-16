@@ -1,6 +1,6 @@
 <template>
   <div class="navBar">
-    <van-nav-bar>
+    <van-nav-bar @click-left="onClickLeft" @click-right="onClickRight">
       <template #left>
         <i class="iconfont wyyicon-"></i>
       </template>
@@ -59,6 +59,10 @@ export default {
         this.titleAcive = index;
         this.$router.push(path);
       }
+    },
+    onClickLeft() {},
+    onClickRight() {
+      this.$router.push("/search");
     }
   },
   created() {},

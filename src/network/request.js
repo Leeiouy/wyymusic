@@ -13,7 +13,6 @@ export function request(config) {
     //拦截器 请求前拦截
     Axios.interceptors.request.use(config => {
 
-        console.log(config);
         // if (localStorage.getItem('Authorization')) {
         //     config.headers.token = localStorage.getItem('Authorization');
         // }
