@@ -1,40 +1,52 @@
 <template>
   <div class="list">
-    <Bscroll ref="Bscroll" class="Bscroll">
-      <template #content>
-        <div class="content">
-          <div
-            class="item"
-            v-for="(item, index) in playList"
-            :key="item.index"
-            @click="itemClick(item)"
-          >
-            <div class="index">{{ index+1 }}</div>
-            <div class="detali van-ellipsis">
-              <p class="songName">{{ item.name }}</p>
-              <p class="Creation">
-                <span class="Album">{{ item.al.name}}</span>
-                <span>-</span>
-                <span class="singer">{{ item.ar[0].name}}</span>
-              </p>
-            </div>
+    <div class="content">
+      <div
+        class="item"
+        v-for="(item, index) in playList"
+        :key="item.index"
+        @click="itemClick(item)"
+      >
+        <div class="index" v-if="!isIndex">{{ index+1 }}</div>
+        <div class="detali van-ellipsis">
+          <p class="songName">{{ item.name }}</p>
+          <p class="Creation">
+            <span class="singer" v-if="item.artists">{{ item.artists[0].name }}</span>
+            <span class="Album" v-if="item.al">{{item.al.name}}</span>
 
-            <div class="options">
-              <i class="iconfont wyyicon"></i>
-            </div>
-          </div>
+            <span>-</span>
+
+            <span class="singer" v-if="item.album">{{ item.album.name }}</span>
+
+            <span class="singer" v-if="item.ar">{{ item.ar[0].name}}</span>
+          </p>
         </div>
-      </template>
-    </Bscroll>
+
+        <div class="options" @click.stop="optionClick(item.id)">
+          <i class="iconfont wyyicon"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="Popup">
+      <van-popup
+        v-model="show"
+        position="bottom"
+        round
+        :style="{ height: '40%' }"
+        @close="closePopup"
+      >
+        <popupList :songId="songId"></popupList>
+      </van-popup>
+    </div>
   </div>
 </template>
 
 <script>
-import Bscroll from "common/better_scroll/better_scroll.vue";
-
+import popupList from "./popupList";
 export default {
   components: {
-    Bscroll
+    popupList
   },
   props: {
     playList: {
@@ -42,10 +54,17 @@ export default {
       default() {
         return [];
       }
+    },
+    isIndex: {
+      type: Boolean,
+      defualt: true
     }
   },
   data() {
-    return {};
+    return {
+      show: false,
+      songId: 0
+    };
   },
   watch: {},
   computed: {},
@@ -53,33 +72,31 @@ export default {
     itemClick: function(data) {
       console.log(data);
     },
-    resetHeight() {
-      this.$refs.Bscroll.Bscroll.refresh();
+    optionClick(id) {
+      this.songId = id;
+      this.show = true;
+    },
+    closePopup() {
+      // 等待动画结束再重置显示状态
+      setTimeout(() => {
+        this.$children[0].$children[0].show = false;
+      }, 300);
     }
   },
-  created() {
-    console.log(this.playList);
-  },
-  mounted() {
-    this.$nextTick(() => {
-      this.resetHeight();
-    });
-  }
+  created() {},
+  mounted() {}
 };
 </script>
 
 <style lang='less' scoped>
 .list {
   background-color: white;
-  .Bscroll {
-    width: 100vw;
-    height: 50vh;
-  }
   .item {
     width: 96%;
     padding: 0 2%;
     height: 44px;
     display: flex;
+    justify-content: space-around;
     align-items: center;
     &:active {
       transition: all 0.5s;
@@ -95,7 +112,6 @@ export default {
     }
     .detali {
       width: 70%;
-      margin-right: 10%;
       overflow: hidden;
       .songName {
         line-height: 30px;
@@ -103,6 +119,18 @@ export default {
       }
       .Creation {
         color: #a4b0be;
+      }
+    }
+
+    .options {
+      width: 10%;
+      height: 100%;
+      line-height: 44px;
+      text-align: center;
+      &:active {
+        opacity: 0.5;
+        transition: all 1s;
+        background-color: rgba(0, 0, 0, 0.8);
       }
     }
   }

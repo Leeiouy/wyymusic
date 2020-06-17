@@ -11,7 +11,9 @@ import {
     button,
     form,
     field,
-    Search
+    Search,
+    Popup,
+    Sticky
 } from "vant";
 
 
@@ -27,3 +29,5 @@ Vue.use(button);
 Vue.use(form);
 Vue.use(field);
 Vue.use(Search)
+Vue.use(Popup)
+Vue.use(Sticky)

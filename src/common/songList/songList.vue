@@ -1,6 +1,6 @@
 <template>
   <div class="songList" v-if="show">
-    <songListNav></songListNav>
+    <songListNav :title="title" :show="titleShow"></songListNav>
 
     <songDetails
       :imgUrl="coverImgUrl"
@@ -13,14 +13,15 @@
       :shareCount="shareCount"
     ></songDetails>
 
-    <allPlay :songCount="playList.length" :subscribedCount="subscribedCount"></allPlay>
+    <van-sticky :offset-top="46" @scroll="stickyScroll">
+      <allPlay :songCount="playList.length" :subscribedCount="subscribedCount"></allPlay>
+    </van-sticky>
 
     <list :playList="playList"></list>
   </div>
 </template>
 
 <script>
-
 import { request } from "network/request.js";
 
 import songListNav from "./component/songListNav";
@@ -43,7 +44,9 @@ export default {
   data() {
     return {
       data: null,
-      show: false,
+      show: true,
+      title: "",
+      titleShow: false,
       songTitle: null,
       playList: [],
       coverImgUrl: "",
@@ -58,7 +61,16 @@ export default {
   },
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+    stickyScroll(position) {
+      if (position.scrollTop > 30) {
+        this.titleShow = true;
+      } else {
+        this.titleShow = false;
+      }
+      console.log(position);
+    }
+  },
   created() {
     let songListId = this.$route.params.id;
     request({
@@ -69,6 +81,9 @@ export default {
     }).then(res => {
       if (res.status == "200") {
         let result = res.data.playlist;
+        console.log(result);
+        this.title = result.name;
+
         this.data = result;
         this.songTitle = result.name; //歌单标题
         this.playList = result.tracks; //歌单列表

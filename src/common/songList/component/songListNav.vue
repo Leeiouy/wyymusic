@@ -5,13 +5,16 @@
       :border="false"
       @click-left="onClickLeft"
       @click-right="onClickRight"
+      :class="{titleShow:show}"
     >
       <template #left>
         <i class="iconfont wyyarrow-left"></i>
       </template>
 
       <template #title>
-        <span>歌单</span>
+        <div :class=" {titles:title}">
+          <span  v-show="show">{{ title }}</span>
+        </div>
       </template>
 
       <template #right>
@@ -24,7 +27,16 @@
 <script>
 export default {
   components: {},
-  props: {},
+  props: {
+    title: {
+      type: String,
+      default: ""
+    },
+    show: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {};
   },
@@ -45,12 +57,17 @@ export default {
 
 <style lang='less' scoped>
 .van-nav-bar {
-  background-color: transparent !important;
+  background-color: transparent;
   i {
     color: white;
   }
   span {
     color: white;
   }
+}
+
+.titleShow {
+  transition: all 2s;
+  background-color: rgb(58, 57, 57);
 }
 </style>

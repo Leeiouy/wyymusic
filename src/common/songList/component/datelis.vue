@@ -2,7 +2,7 @@
   <div class="details">
     <div class="bg" :style="{'background-image': 'url('+imgUrl+')'}"></div>
     <div class="content">
-      <songCover class="songCover" :imgUrl="imgUrl" :count="playCount"></songCover>
+      <songCover class="songCover" :imgUrl="imgUrl" :count="playCount" :Preview='true'></songCover>
 
       <div class="title">
         <h2>{{ title }}</h2>

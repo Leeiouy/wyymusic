@@ -2,16 +2,21 @@
   <div class="searchResult">
     <loading v-if="!show"></loading>
     <div v-else>
-      <van-tabs v-model="active" offset-top="50" sticky>
+      <van-tabs v-model="active" >
+        <van-tab title="单曲">
+          <songList :playList="songs" :isIndex="true"></songList>
+        </van-tab>
+
+        <!-- <van-tab title="单曲">
+          <searchSong :songs="songs"></searchSong>
+        </van-tab>
+
+
+
         <van-tab title="单曲">
           <searchSong :songs="songs"></searchSong>
         </van-tab>
-        <van-tab title="单曲">
-          <searchSong :songs="songs"></searchSong>
-        </van-tab>
-        <van-tab title="单曲">
-          <searchSong :songs="songs"></searchSong>
-        </van-tab>
+        -->
       </van-tabs>
     </div>
   </div>
@@ -22,10 +27,10 @@ import { request } from "network/request.js";
 
 import loading from "common/loading/loading.vue";
 
-import searchSong from "./common/songs";
+import songList from "common/songList/component/list.vue";
 
 export default {
-  components: { loading, searchSong },
+  components: { loading, songList },
   props: {},
   data() {
     return {
@@ -51,7 +56,7 @@ export default {
 
           this.songs = result;
           this.show = true;
-          console.log(result);
+
         }
       });
     }

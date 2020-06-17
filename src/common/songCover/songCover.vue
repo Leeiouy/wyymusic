@@ -1,6 +1,6 @@
 <template>
   <div class="songCover">
-    <img :src="imgUrl" alt />
+    <img :src="imgUrl" alt @click="imgPreview" />
     <span v-if="count" class="count">
       <i class="iconfont wyybofangsanjiaoxing"></i>
       {{ playCount }}
@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { ImagePreview } from "vant";
 export default {
   components: {},
   props: {
@@ -29,6 +30,10 @@ export default {
     mes: {
       type: String,
       default: ""
+    },
+    Preview: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -44,7 +49,18 @@ export default {
       }
     }
   },
-  methods: {},
+  methods: {
+    imgPreview() {
+      if (this.Preview) {
+        console.log(1);
+
+        ImagePreview({
+          images: [this.imgUrl],
+          showIndex: false
+        });
+      }
+    }
+  },
   created() {},
   mounted() {}
 };
