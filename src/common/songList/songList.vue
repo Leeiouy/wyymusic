@@ -13,7 +13,7 @@
       :shareCount="shareCount"
     ></songDetails>
 
-    <van-sticky :offset-top="46" @scroll="stickyScroll">
+    <van-sticky :offset-top="46" :z-index="0" @scroll="stickyScroll">
       <allPlay :songCount="playList.length" :subscribedCount="subscribedCount"></allPlay>
     </van-sticky>
 
@@ -68,7 +68,6 @@ export default {
       } else {
         this.titleShow = false;
       }
-      console.log(position);
     }
   },
   created() {

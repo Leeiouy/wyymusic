@@ -104,7 +104,9 @@ export default {
       font-size: 14px;
       display: flex;
       &:active {
+        transition: all 0.5s;
         opacity: 0.7;
+        background-color: rgba(0, 0, 0, 0.2);
       }
       i {
         width: 10%;

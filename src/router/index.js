@@ -6,7 +6,7 @@ vue.use(vueRouter)
 
 const routes = [{
         path: '',
-        redirect: '/find'
+        redirect: '/login'
     },
     {
         path: '/login',

@@ -8,9 +8,8 @@ import {
     Tab,
     Tabs,
     Toast,
-    button,
-    form,
-    field,
+    Form,
+    Field,
     Search,
     Popup,
     Sticky
@@ -25,9 +24,8 @@ Vue.use(SwipeItem);
 Vue.use(Tab);
 Vue.use(Tabs);
 Vue.use(Toast);
-Vue.use(button);
-Vue.use(form);
-Vue.use(field);
+Vue.use(Form);
+Vue.use(Field);
 Vue.use(Search)
 Vue.use(Popup)
 Vue.use(Sticky)
