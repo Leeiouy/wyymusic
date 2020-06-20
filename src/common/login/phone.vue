@@ -62,7 +62,7 @@ export default {
             let result = res.data;
 
 
-          console.log(result);
+          console.log(res);
           
 
             // this.$store.commit("setToken", result.token);

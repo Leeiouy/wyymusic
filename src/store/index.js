@@ -5,25 +5,19 @@ import VueX from 'vuex'
 Vue.use(VueX)
 export default new VueX.Store({
     state: {
-        Authorization: localStorage.getItem('Authorization') ? localStorage.getItem('Authorization') : '',
-        user: {}
+        playList: [],
+        PlayHistory: [],
+        playStatus: false
     },
     getters: {
 
     },
     mutations: {
-        setToken(state, token) {
-            state.Authorization = token;
-            localStorage.setItem('Authorization', token);
+        setPlayList(state, list) {
+            state.playList.push(list)
         },
-        setProfile(state, profile) {
-
-            Vue.set(state, 'user', profile)
-
-
-
-            console.log(state);
-
+        playStatusChange(state) {
+            state.playStatus = !state.playStatus
         }
     },
     actions: {},

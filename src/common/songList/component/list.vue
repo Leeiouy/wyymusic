@@ -44,6 +44,8 @@
 
 <script>
 import popupList from "./popupList";
+
+import { request } from "network/request.js";
 export default {
   components: {
     popupList
@@ -70,7 +72,9 @@ export default {
   computed: {},
   methods: {
     itemClick: function(data) {
+      this.$store.commit("setPlayList", data);
       console.log(data);
+      
     },
     optionClick(id) {
       this.songId = id;

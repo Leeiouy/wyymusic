@@ -56,7 +56,8 @@ export default {
       avatarUrl: "",
       nickname: "",
       commentCount: 0,
-      shareCount: 0
+      shareCount: 0,
+      cookie: document.cookie
     };
   },
   watch: {},
@@ -75,14 +76,13 @@ export default {
     request({
       url: "/playlist/detail",
       params: {
+        cookie: this.cookie,
         id: songListId
       }
     }).then(res => {
       if (res.status == "200") {
         let result = res.data.playlist;
-        console.log(result);
         this.title = result.name;
-
         this.data = result;
         this.songTitle = result.name; //歌单标题
         this.playList = result.tracks; //歌单列表

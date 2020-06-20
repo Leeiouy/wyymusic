@@ -63,6 +63,8 @@ export default {
       }
     })
       .then(res => {
+        console.log(res);
+        
         let result = res.data.result;
         this.songListData = result;
         this.show = true;

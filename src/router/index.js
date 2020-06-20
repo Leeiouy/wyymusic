@@ -23,14 +23,25 @@ const routes = [{
     {
         path: '/yuncun',
         component: () => import('views/yuncun.vue')
-    }, {
+    },
+    {
         path: '/profile',
         component: () => import('views/profile.vue')
+    },
+    {
+        path: '/video',
+        component: () => import('views/video.vue')
+    },
+    {
+        path: '/playMusicDetails',
+        component: () => import('common/playMusic/playMusicDetails.vue')
+
     }, {
         path: "/songLIst/:id",
         name: 'songList',
         component: () => import('common/songList/songList.vue')
-    }, {
+    },
+    {
         path: '/topList',
         name: 'topList',
         component: () => import('components/find/topList/topList.vue')
@@ -44,8 +55,8 @@ const routes = [{
         path: '/comment/:id',
         name: 'comment',
         component: () => import('common/comment/comment.vue')
-    }, {
-
+    },
+    {
         path: "/search",
         name: 'search',
         component: () => import('common/search/search.vue'),
@@ -67,7 +78,7 @@ const routes = [{
 
 const router = new vueRouter({
     routes,
-    mode: 'history'
+    mode: 'history',
 })
 
 

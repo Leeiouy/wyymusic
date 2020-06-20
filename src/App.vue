@@ -2,6 +2,11 @@
   <div id="app">
     <navBar v-show="navBarShow"></navBar>
 
+    <playMusic></playMusic>
+
+
+
+
     <keep-alive exclude="songList,comment">
       <router-view></router-view>
     </keep-alive>
@@ -10,10 +15,13 @@
 <script>
 import navBar from "common/navBar/navBar.vue";
 
+import playMusic from "common/playMusic/playMusic.vue";
+
 export default {
   name: "App",
   components: {
-    navBar
+    navBar,
+    playMusic
   },
   props: {},
   data() {
@@ -46,8 +54,6 @@ export default {
 
 <style lang='less'>
 #app {
-  max-width: 768px;
-  margin: 0 auto;
   position: relative;
   top: 0;
   left: 0;

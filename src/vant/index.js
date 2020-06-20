@@ -12,7 +12,8 @@ import {
     Field,
     Search,
     Popup,
-    Sticky
+    Sticky,
+    Slider
 } from "vant";
 
 
@@ -29,3 +30,4 @@ Vue.use(Field);
 Vue.use(Search)
 Vue.use(Popup)
 Vue.use(Sticky)
+Vue.use(Slider)
