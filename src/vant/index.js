@@ -13,7 +13,8 @@ import {
     Search,
     Popup,
     Sticky,
-    Slider
+    Slider,
+    Icon
 } from "vant";
 
 
@@ -31,3 +32,4 @@ Vue.use(Search)
 Vue.use(Popup)
 Vue.use(Sticky)
 Vue.use(Slider)
+Vue.use(Icon)

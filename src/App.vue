@@ -2,10 +2,7 @@
   <div id="app">
     <navBar v-show="navBarShow"></navBar>
 
-    <playMusic></playMusic>
-
-
-
+    <playMusic v-show="playMusic"></playMusic>
 
     <keep-alive exclude="songList,comment">
       <router-view></router-view>
@@ -25,9 +22,7 @@ export default {
   },
   props: {},
   data() {
-    return {
-      // navBarShow: true
-    };
+    return {};
   },
   watch: {},
   computed: {
@@ -43,6 +38,15 @@ export default {
         return true;
       } else {
         return false;
+      }
+    },
+    playMusic() {
+      let path = this.$route.path;
+
+      if (path == "/playMusicDetails") {
+        return false;
+      } else {
+        return true;
       }
     }
   },

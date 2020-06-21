@@ -1,7 +1,8 @@
 <template>
   <div class="playMusicDetails">
-
+    <div class="bg" :style="{'background-image': 'url('+imgUrl+')'}"></div>
     <playBar></playBar>
+
     <disk></disk>
 
     <musicProgress></musicProgress>
@@ -11,7 +12,6 @@
 </template>
 
 <script>
-import { request } from "network/request.js";
 import playBar from "./component/playBar";
 
 import disk from "./component/disk";
@@ -31,18 +31,17 @@ export default {
     return {};
   },
   watch: {},
-  computed: {},
-  methods: {},
-  created() {
-    request({
-      url: "/song/detail",
-      params: {
-        ids: "347230"
-      }
-    }).then(res => {
-      console.log(res);
-    });
+  computed: {
+    // :style="{'background-image': 'url('+imgUrl+')'}"
+    imgUrl: function() {
+      return (
+        this.$store.state.playList[this.$store.state.playSongIndex] &&
+        this.$store.state.playList[this.$store.state.playSongIndex].al.picUrl
+      );
+    }
   },
+  methods: {},
+  created() {},
   mounted() {}
 };
 </script>
@@ -50,6 +49,18 @@ export default {
 <style lang='less' scoped>
 .playMusicDetails {
   height: 100vh;
-  background-color: rgba(80, 80, 80, 0.9);
+  position: relative;
+  .bg {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: -20;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    filter: blur(30px) brightness(60%);
+  }
+
+  // background-color: rgba(80, 80, 80, 0.9);
 }
 </style>

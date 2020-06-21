@@ -72,9 +72,10 @@ export default {
   computed: {},
   methods: {
     itemClick: function(data) {
-      this.$store.commit("setPlayList", data);
       console.log(data);
       
+      this.$store.commit("setPlayList", data);
+
     },
     optionClick(id) {
       this.songId = id;
