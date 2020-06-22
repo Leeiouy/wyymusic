@@ -50,6 +50,7 @@ export default {
 .playMusicDetails {
   height: 100vh;
   position: relative;
+  background-color: rgba(80, 80, 80, 0.6);
   .bg {
     position: absolute;
     width: 100vw;
@@ -58,9 +59,7 @@ export default {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    filter: blur(30px) brightness(60%);
+    filter: blur(20px) brightness(40%);
   }
-
-  // background-color: rgba(80, 80, 80, 0.9);
 }
 </style>

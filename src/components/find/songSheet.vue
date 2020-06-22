@@ -7,6 +7,9 @@
       <template #bigTitle>
         <span>为你精挑细选</span>
       </template>
+      <template #btn>
+        <span @click="clickMore">查看更多</span>
+      </template>
     </findTitle>
 
     <Bscroll ref="Bscroll" class="Bscroll" :scrollX="true">
@@ -53,6 +56,9 @@ export default {
   methods: {
     itemClick(id) {
       this.$router.push("/songList/" + id);
+    },
+    clickMore() {
+      this.$router.push("/playList");
     }
   },
   created() {

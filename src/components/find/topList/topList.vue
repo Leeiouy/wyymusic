@@ -4,26 +4,35 @@
 
     <div v-else>
       <topListNav></topListNav>
-      <topListItem :topData="topData">
-        <p slot="title">官方版</p>
-      </topListItem>
 
-      <topListItem :recommand="recommand">
-        <p slot="title">推荐榜</p>
-      </topListItem>
+      <Bscroll class="Bscroll" ref="Bscroll">
+        <div slot="content" class="pb50">
+          <topListItem :topData="topData">
+            <p slot="title">官方版</p>
+          </topListItem>
+
+          <topListItem :recommand="recommand">
+            <p slot="title">推荐榜</p>
+          </topListItem>
+        </div>
+      </Bscroll>
     </div>
   </div>
 </template>
 
 <script>
+import Bscroll from "common/better_scroll/better_scroll.vue";
+
 import { request } from "network/request.js";
 
 import topListNav from "./component/topListNav";
+
 import topListItem from "./component/topLIstItem";
 
 import loading from "common/loading/loading.vue";
 export default {
   components: {
+    Bscroll,
     topListNav,
     topListItem,
     loading
@@ -38,8 +47,7 @@ export default {
   },
   watch: {},
   computed: {},
-  methods: {
-  },
+  methods: {},
   created() {
     request({
       url: "/toplist/detail"
@@ -49,14 +57,26 @@ export default {
         let result = res.data.list;
         this.topData.push(result.splice(0, 4));
         this.recommand.push(result);
-
         this.show = false;
       }
     });
   },
-  mounted() {}
+  mounted() {
+    this.$nextTick(() => {
+      //等待Dom更新完成刷新高度
+      setTimeout(() => {
+        this.$refs.Bscroll.Bscroll.refresh();
+      }, 100);
+    });
+  }
 };
 </script>
 
 <style lang='less' scoped>
+.topList {
+  margin-top: 50px;
+  .Bscroll {
+    height: calc(100vh - 46px);
+  }
+}
 </style>

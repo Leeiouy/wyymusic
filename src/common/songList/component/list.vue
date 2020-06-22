@@ -1,5 +1,5 @@
 <template>
-  <div class="list">
+  <div class="list pb50">
     <div class="content">
       <div
         class="item"
@@ -72,10 +72,17 @@ export default {
   computed: {},
   methods: {
     itemClick: function(data) {
-      console.log(data);
-      
-      this.$store.commit("setPlayList", data);
-
+      request({
+        url: "/song/detail",
+        params: {
+          ids: data.id
+        }
+      }).then(res => {
+        if (res.status == 200) {
+          let result = res.data.songs[0];
+          this.$store.commit("setPlayList", result);
+        }
+      });
     },
     optionClick(id) {
       this.songId = id;

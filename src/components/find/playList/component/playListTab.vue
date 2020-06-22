@@ -1,14 +1,14 @@
 <template>
   <div class="playListTab">
     <Bscroll class="Bscroll" ref="BScroll">
-      <div slot="content" class="content">
+      <div slot="content" class="content pb50">
         <div
           class="list"
           v-for="(item, index) in listData"
           :key="item.index"
           @click="listClick(item)"
         >
-          <songCover :imgUrl="item.coverImgUrl" :count='item.playCount'></songCover>
+          <songCover :imgUrl="item.coverImgUrl" :count="item.playCount"></songCover>
           <p>{{ item.name }}</p>
         </div>
       </div>
@@ -41,7 +41,7 @@ export default {
     },
     resetHeight() {
       console.log(123);
-      
+
       this.$refs.BScroll.Bscroll.refresh();
     }
   },

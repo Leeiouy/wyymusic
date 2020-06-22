@@ -30,6 +30,12 @@ export default {
 
 <style lang='less' scoped>
 .topListNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: white;
   font-weight: 600;
   span {
     margin-left: 5px;

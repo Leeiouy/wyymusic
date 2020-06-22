@@ -24,7 +24,14 @@ export default {
   mounted() {
     this.Bscroll = new betterBscroll(this.$refs.Bscroll, {
       click: true,
-      scrollX: this.scrollX
+      scrollX: this.scrollX,
+      bounce: {
+        //当滚动超过边缘的时候会有一小段回弹动画
+        top: false,
+        bottom: true,
+        left: true,
+        right: true
+      }
     });
   }
 };

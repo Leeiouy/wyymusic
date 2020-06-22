@@ -9,7 +9,9 @@
         <slot name="bigTitle"></slot>
       </div>
 
-      <button class="right btn" @click="clickMore">查看更多</button>
+      <div class="right btn van-hairline--surround">
+        <slot name="btn"></slot>
+      </div>
     </div>
   </div>
 </template>
@@ -23,11 +25,7 @@ export default {
   },
   watch: {},
   computed: {},
-  methods: {
-    clickMore(){
-      this.$router.push('/playList')
-    }
-  },
+  methods: {},
   created() {},
   mounted() {}
 };
@@ -42,10 +40,12 @@ export default {
     line-height: 22px;
   }
   .btn {
-    padding: 1.5px 5px;
-    border: 1px solid black;
-    border-radius: 10px;
-    background-color: transparent;
+    padding: 2px 5px;
+    border-radius: 20px;
+    overflow: hidden;
+    &:active {
+      opacity: 0.7;
+    }
   }
 }
 </style>

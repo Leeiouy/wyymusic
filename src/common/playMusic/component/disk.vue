@@ -25,10 +25,10 @@ export default {
   watch: {},
   computed: {
     play: function() {
-      return !this.$store.state.isPlay;
+      return this.$store.state.isPlay;
     },
     stop: function() {
-      return this.$store.state.isPlay;
+      return !this.$store.state.isPlay;
     },
     imgUrl: function() {
       return (

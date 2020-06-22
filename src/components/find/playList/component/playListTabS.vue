@@ -1,5 +1,5 @@
 <template>
-  <div class="playListTabS">
+  <div class="playListTabS mb50">
     <van-tabs v-model="active" background="transparent" @click="onClick">
       <van-tab v-for="(item, index) in titles" :key="item.index" :title="item.title" class="tab">
         <loading v-if="!titles[index].show"></loading>

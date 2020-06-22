@@ -1,6 +1,6 @@
 <template>
-  <div id="playMusic" class="van-hairline--surround" @click="goMusicDetails">
-    <div class="musicDetails" v-if="show">
+  <div id="playMusic" @click="goMusicDetails">
+    <div class="musicDetails van-hairline--surround" v-if="show">
       <div class="img">
         <img :src="playList[playSongIndex].al.picUrl" />
       </div>
@@ -12,8 +12,8 @@
 
       <div class="btn">
         <div class="play" @click.stop="statusChange">
-          <i class="iconfont play" :class="{wyybofang2:isPlay}"></i>
-          <i class="iconfont play" :class="{wyyzanting:!isPlay}"></i>
+          <i class="iconfont play" :class="{wyybofang2:!isPlay}"></i>
+          <i class="iconfont play" :class="{wyyzanting:isPlay}"></i>
         </div>
 
         <div class="playList">
@@ -67,6 +67,12 @@ export default {
       }).then(res => {
         if (res.status == 200) {
           let result = res.data.data[0];
+
+          if (!result.url) {
+            this.$toast.fail("音乐数据请求失败");
+            return;
+          }
+
           this.SongUrl = result.url;
           console.log(result);
         }
@@ -76,21 +82,33 @@ export default {
       let audio = document.getElementById("audio");
       this.$store.commit("setAudioEL", audio);
       this.audio = audio;
-      audio.addEventListener("progress", e => {
-        //!音频信息加载完成后再获取音乐总时长 激活事件
-        this.$store.commit("getDuration", e.target.duration);
 
-        //获取音乐时长后开始播放
-        e.target.play();
-      });
       audio.addEventListener("timeupdate", e => {
-        //!当播放时间发生改变时候  激活事件 修改vueX数据
+        //当播放时间发生改变时候  激活事件 修改vueX数据
         this.$store.commit("currentTimeChange", e.target.currentTime);
       });
-      audio.addEventListener("error", e => {
-        //!当数据请求失败时候  激活事件
-        this.$toast.fail("音乐数据请求失败");
-      });
+
+      //当浏览器能够开始播放指定的音频/视频时，发生 canplay 事件
+      audio.addEventListener(
+        "canplay",
+        e => {
+          //获取音乐总时长提交给vueX
+          this.$store.commit("getDuration", e.target.duration);
+          //开始播放
+          e.target.play();
+          this.$store.commit("isPlay", true);
+        },
+        { once: true }
+      );
+
+      audio.addEventListener(
+        "error",
+        e => {
+          //当数据请求失败时候  激活事件
+          this.$toast.fail("音乐数据请求失败");
+        },
+        { once: true }
+      );
     },
     goMusicDetails() {
       this.$router.push("/playMusicDetails");
@@ -103,13 +121,15 @@ export default {
 
 <style lang='less' scoped>
 #playMusic {
+  position: absolute;
+  z-index: 10000;
   .musicDetails {
     background-color: white;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 46px;
+    height: 50px;
     display: flex;
     justify-content: space-around;
     align-items: center;
