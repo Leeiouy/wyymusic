@@ -36,13 +36,12 @@ const routes = [{
 
     {
         path: '/video/details/:id',
-        component:()=>import('')
+        name: 'videoDetalis',
+        component: () => import('common/videoDetails/videoDetails.vue')
     },
     {
         path: '/playMusicDetails',
-        meta: {
-            play: false
-        },
+
         component: () => import('common/playMusic/playMusicDetails.vue')
 
     }, {

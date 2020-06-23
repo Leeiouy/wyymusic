@@ -30,7 +30,7 @@ export default {
   computed: {},
   methods: {
     videoItem() {
-      console.log("打印了");
+      this.$router.push("/video/details/" + this.videoData.id);
     }
   },
   created() {},

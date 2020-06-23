@@ -4,7 +4,7 @@
 
     <playMusic v-show="playMusic"></playMusic>
 
-    <keep-alive exclude="songList,comment">
+    <keep-alive exclude="songList,comment,videoDetalis">
       <router-view></router-view>
     </keep-alive>
   </div>

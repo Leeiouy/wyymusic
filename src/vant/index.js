@@ -14,7 +14,9 @@ import {
     Popup,
     Sticky,
     Slider,
-    Icon
+    Icon,
+    Collapse,
+    CollapseItem
 } from "vant";
 
 
@@ -33,3 +35,5 @@ Vue.use(Popup)
 Vue.use(Sticky)
 Vue.use(Slider)
 Vue.use(Icon)
+Vue.use(Collapse);
+Vue.use(CollapseItem);
