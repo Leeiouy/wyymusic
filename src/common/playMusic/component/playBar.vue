@@ -5,7 +5,7 @@
     <div class="mes">
       <p>{{ title }}</p>
 
-      <span>{{artist }}</span>
+      <span class="a4b">{{artist }}</span>
     </div>
   </div>
 </template>

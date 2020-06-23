@@ -48,7 +48,6 @@ export default {
       this.show = true;
       this.getSong(); //获取音乐数据
       this.getAudioEL(); //获取audio元素，并且绑定事件
-      console.log(this.playList);
     }
   },
   computed: {
@@ -72,9 +71,7 @@ export default {
             this.$toast.fail("音乐数据请求失败");
             return;
           }
-
           this.SongUrl = result.url;
-          console.log(result);
         }
       });
     },
@@ -111,7 +108,9 @@ export default {
       );
     },
     goMusicDetails() {
-      this.$router.push("/playMusicDetails");
+      this.$router.push({
+        path: "/playMusicDetails"
+      });
     }
   },
   created() {},

@@ -6,7 +6,11 @@
       {{ playCount }}
     </span>
 
+    <i v-show="playBtn" class="iconfont wyyjiediankaishi playBtn"></i>
+
     <span class="mes" v-if="mes">{{ mes }}</span>
+
+    <span class="times" v-if="times">{{ times }}</span>
   </div>
 </template>
 
@@ -31,7 +35,15 @@ export default {
       type: String,
       default: ""
     },
+    times: {
+      type: String,
+      default: ""
+    },
     Preview: {
+      type: Boolean,
+      default: false
+    },
+    playBtn: {
       type: Boolean,
       default: false
     }
@@ -91,6 +103,22 @@ export default {
     left: 5%;
     bottom: 5px;
     color: white;
+  }
+
+  .times {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: white;
+  }
+
+  .playBtn {
+    position: absolute;
+    top: calc(50% - 15px);
+    left: calc(50% - 15px);
+    font-size: 30px;
+    color: white;
+    opacity: 0.7;
   }
 }
 </style>

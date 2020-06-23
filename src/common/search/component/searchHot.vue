@@ -5,24 +5,28 @@
 
     <div class="hot" v-else>
       <h3>热搜榜</h3>
-      <div
-        class="hotItem"
-        v-for="(item, index) in hotList"
-        :key="item.index"
-        @click="hotItemClick(item)"
-      >
-        <div class="index" :class="{hotIndex:index<3}">
-          <p>{{ index+1 }}</p>
+      <Bscroll class="Bscroll">
+        <div class="pb50" slot="content">
+          <div
+            class="hotItem"
+            v-for="(item, index) in hotList"
+            :key="item.index"
+            @click="hotItemClick(item)"
+          >
+            <div class="index" :class="{hotIndex:index<3}">
+              <p>{{ index+1 }}</p>
+            </div>
+            <div class="content">
+              <h3>
+                {{ item.searchWord }}
+                <img :src="item.iconUrl" />
+              </h3>
+              <span>{{ item.content }}</span>
+            </div>
+            <div class="score">{{ item.score }}</div>
+          </div>
         </div>
-        <div class="content">
-          <h3>
-            {{ item.searchWord }}
-            <img :src="item.iconUrl" />
-          </h3>
-          <span>{{ item.content }}</span>
-        </div>
-        <div class="score">{{ item.score }}</div>
-      </div>
+      </Bscroll>
     </div>
   </div>
 </template>
@@ -30,10 +34,13 @@
 <script>
 import { request } from "network/request.js";
 
+import Bscroll from "common/better_scroll/better_scroll.vue";
+
 import loading from "common/loading/loading.vue";
 export default {
   components: {
-    loading
+    loading,
+    Bscroll
   },
   props: {},
   data() {
@@ -67,7 +74,10 @@ export default {
   padding-top: 50px;
 }
 .hot {
-  > h3 {
+  .Bscroll {
+    height: calc(100vh - 48px);
+  }
+  h3 {
     padding-left: 5%;
   }
 }

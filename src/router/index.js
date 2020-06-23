@@ -6,7 +6,7 @@ vue.use(vueRouter)
 
 const routes = [{
         path: '',
-        redirect: '/login'
+        redirect: '/find'
     },
     {
         path: '/login',
@@ -18,6 +18,7 @@ const routes = [{
     },
     {
         path: '/find',
+        name: 'find',
         component: () => import('views/find.vue')
     },
     {
@@ -32,8 +33,16 @@ const routes = [{
         path: '/video',
         component: () => import('views/video.vue')
     },
+
+    {
+        path: '/video/details/:id',
+        component:()=>import('')
+    },
     {
         path: '/playMusicDetails',
+        meta: {
+            play: false
+        },
         component: () => import('common/playMusic/playMusicDetails.vue')
 
     }, {
@@ -79,7 +88,32 @@ const routes = [{
 const router = new vueRouter({
     routes,
     mode: 'history',
+
 })
 
+router.beforeEach((to, from, next) => {
+
+    // console.log(to.path);
+
+    // console.log(from.path);
+
+    // if (to.path == '/playMusicDetails') {
+
+    //     console.log(to);
+    //     if (to.meta.play) {
+    //         next()
+    //     } else {
+    //         next({
+    //             name: 'find'
+    //         })
+    //     }
+    // }
+
+
+
+    next()
+
+
+})
 
 export default router

@@ -45,7 +45,9 @@
 <script>
 import popupList from "./popupList";
 
-import { request } from "network/request.js";
+import { getSongData } from 'network/getSongData/getSongData.js';
+
+
 export default {
   components: {
     popupList
@@ -72,17 +74,13 @@ export default {
   computed: {},
   methods: {
     itemClick: function(data) {
-      request({
-        url: "/song/detail",
-        params: {
-          ids: data.id
-        }
-      }).then(res => {
-        if (res.status == 200) {
+        getSongData(data.id).then(res=>{
+           if (res.status == 200) {
           let result = res.data.songs[0];
-          this.$store.commit("setPlayList", result);
+          this.$store.commit("setPlayList", result)
         }
-      });
+        })
+
     },
     optionClick(id) {
       this.songId = id;

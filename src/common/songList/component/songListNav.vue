@@ -17,9 +17,6 @@
         </div>
       </template>
 
-      <template #right>
-        <i class="iconfont wyysuosou"></i>
-      </template>
     </van-nav-bar>
   </div>
 </template>

@@ -37,14 +37,22 @@ export default {
   data() {
     return {};
   },
-  watch: {},
+  watch: {
+    "$route.path": function() {
+      this.resetHeight();
+    }
+  },
   computed: {},
-  methods: {},
+  methods: {
+    resetHeight() {
+      this.$refs.Bscroll.Bscroll.refresh();
+    }
+  },
   created() {},
   mounted() {
     this.$nextTick(() => {
       //等待Dom更新完成刷新高度
-      this.$refs.Bscroll.Bscroll.refresh();
+      this.resetHeight();
     });
   }
 };

@@ -38,6 +38,8 @@ import songCover from "common/songCover/songCover.vue";
 import Bscroll from "common/better_scroll/better_scroll.vue";
 
 import findTitle from "components/find/common/title.vue";
+
+import { debounce } from "common/debounce/debounce.js";
 export default {
   components: {
     songCover,
@@ -54,12 +56,13 @@ export default {
   watch: {},
   computed: {},
   methods: {
-    itemClick(id) {
-      this.$router.push("/songList/" + id);
-    },
     clickMore() {
       this.$router.push("/playList");
-    }
+    },
+    itemClick: debounce(function(id) {
+      //  有可能是滚动插件派送事件问题会触发两次，使用节流函数防止触发两次
+      this.$router.push("/songList/" + id);
+    }, 200)
   },
   created() {
     request({
