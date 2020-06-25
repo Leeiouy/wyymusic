@@ -14,7 +14,11 @@
     ></songDetails>
 
     <van-sticky :offset-top="46" :z-index="0" @scroll="stickyScroll">
-      <allPlay :songCount="playList.length" :subscribedCount="subscribedCount"></allPlay>
+      <allPlay
+        @playAllMusic="playAllMusic"
+        :songCount="playList.length"
+        :subscribedCount="subscribedCount"
+      ></allPlay>
     </van-sticky>
 
     <list :playList="playList"></list>
@@ -24,6 +28,8 @@
 <script>
 import { request } from "network/request.js";
 
+import { getAllData } from "network/getSongData/getSongData.js";
+
 import songListNav from "./component/songListNav";
 
 import songDetails from "./component/datelis";
@@ -31,6 +37,7 @@ import songDetails from "./component/datelis";
 import allPlay from "common/songList/component/allPlay.vue";
 
 import list from "common/songList/component/list.vue";
+import { isFunction } from "util";
 
 export default {
   name: "songList",
@@ -69,6 +76,10 @@ export default {
       } else {
         this.titleShow = false;
       }
+    },
+    //点击全部播放，将数据push到vuex播放列表
+    playAllMusic() {
+      getAllData.call(this, this.playList);
     }
   },
   created() {

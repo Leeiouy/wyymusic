@@ -16,7 +16,7 @@
           <i class="iconfont play" :class="{wyyzanting:isPlay}"></i>
         </div>
 
-        <div class="playList">
+        <div class="playList" @click.stop="isPopupShow">
           <i class="iconfont wyyliebiao"></i>
         </div>
       </div>
@@ -25,6 +25,17 @@
     <div>
       <audio id="audio" :src="SongUrl"></audio>
     </div>
+
+    <van-popup
+      v-model="listShow"
+      position="bottom"
+      round
+      get-container="body"
+      @click-overlay="closePopup"
+      :style="{ height: '40%' }"
+    >
+      <playListPopup></playListPopup>
+    </van-popup>
   </div>
 </template>
 
@@ -32,8 +43,11 @@
 import { mapState } from "vuex";
 import { request } from "network/request";
 
+import playListPopup from "common/playMusic/playListPopup.vue";
 export default {
-  components: {},
+  components: {
+    playListPopup
+  },
   props: {},
   data() {
     return {
@@ -51,11 +65,25 @@ export default {
     }
   },
   computed: {
-    ...mapState(["status", "playSongIndex", "playList", "isPlay"])
+    ...mapState(["status", "playSongIndex", "playList", "isPlay"]),
+    listShow: {
+      get() {
+        return this.$store.state.listShow;
+      },
+      set() {}
+    }
   },
   methods: {
     statusChange() {
       this.$store.commit("isPlay");
+    },
+    //点击弹出层遮罩发生事件
+    isPopupShow() {
+      this.$store.commit("isListShow");
+    },
+    //点击弹出层遮罩发生事件
+    closePopup() {
+      this.$store.commit("isListShow");
     },
     getSong() {
       request({
@@ -68,6 +96,11 @@ export default {
           let result = res.data.data[0];
 
           if (!result.url) {
+            this.SongUrl = "";
+            this.audio.pause();
+
+            this.$store.commit("isPlay");
+
             this.$toast.fail("音乐数据请求失败");
             return;
           }
@@ -98,10 +131,16 @@ export default {
         { once: true }
       );
 
+      audio.addEventListener("ended", e => {
+        this.$store.commit("nextPlay");
+      });
+
       audio.addEventListener(
         "error",
         e => {
           //当数据请求失败时候  激活事件
+          console.log(e.target);
+
           this.$toast.fail("音乐数据请求失败");
         },
         { once: true }
@@ -121,7 +160,7 @@ export default {
 <style lang='less' scoped>
 #playMusic {
   position: absolute;
-  z-index: 10000;
+  z-index: 1000;
   .musicDetails {
     background-color: white;
     position: fixed;

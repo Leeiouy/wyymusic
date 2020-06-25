@@ -1,6 +1,6 @@
 <template>
   <div class="allPlay">
-    <div class="play">
+    <div class="play" @click.stop="playAll">
       <i class="iconfont wyybofang"></i>
       <p>
         播放全部
@@ -32,7 +32,11 @@ export default {
   },
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+    playAll() {
+      this.$emit("playAllMusic");
+    }
+  },
   created() {},
   mounted() {}
 };
@@ -53,6 +57,9 @@ export default {
   .play {
     width: 60%;
     display: flex;
+    &:active {
+      opacity: 0.7;
+    }
     p {
       font-size: 14px;
       margin-left: 5%;
@@ -70,6 +77,9 @@ export default {
     color: white;
     line-height: 35px;
     text-align: center;
+    &:active {
+      opacity: 0.7;
+    }
   }
 }
 </style>

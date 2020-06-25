@@ -2,12 +2,12 @@
   <div class="videoDetalis" v-if="show">
     <videoNav></videoNav>
 
-    <div class="video van-hairline--surround">
+    <div class="video">
       <video controls :src="videoUrl"></video>
     </div>
 
     <div class="mv">
-      <van-collapse v-model="activeName" accordion>
+      <van-collapse v-model="activeName" :border="false" accordion>
         <van-collapse-item :title="mvTitle" name="1">{{ mvData.desc }}</van-collapse-item>
       </van-collapse>
 
@@ -16,7 +16,7 @@
         <div class="info">
           <div>
             <i class="iconfont wyydianzan1"></i>
-            <p class="a4b">{{ info.likedCount }}</p>
+            <p class="a4b">{{ info.likeCount||info.likedCount }}</p>
           </div>
           <div>
             <i class="iconfont wyyshoucang"></i>
@@ -31,6 +31,8 @@
             <p class="a4b">{{ info.shareCount }}</p>
           </div>
         </div>
+
+        <similarMv></similarMv>
       </div>
     </div>
   </div>
@@ -41,10 +43,13 @@ import { request } from "network/request";
 
 import videoNav from "./component/videoDetailsNav";
 
+import similarMv from "./component/videoDetailsSimilar";
+
 export default {
   name: "videoDetalis",
   components: {
-    videoNav
+    videoNav,
+    similarMv
   },
   props: {},
   data() {
@@ -77,7 +82,6 @@ export default {
         if (res.status == 200) {
           let result = res.data.data;
           this.mvData = result;
-          console.log(result);
           // 这个promise返回值是下一个promise的第一个参数
           return result;
         }
@@ -100,22 +104,26 @@ export default {
         request({
           url: "/mv/detail/info",
           params: {
-            mvid: res.id
+            mvid: mvId
           }
         }).then(res => {
           if ((res.status = 200)) {
-            let info = res.data;
+            let info = res.data.data || res.data;
             this.info = info;
-            console.log(info);
+
             //等待数据全部请求完成再 将show改为ture 渲染这个页面
             this.show = true;
           }
         });
       });
-
-    console.log("创建");
   },
-  mounted() {}
+  mounted() {},
+  beforeRouteUpdate(to, from, next) {
+    //复用此组件会触发这个函数
+
+    
+    next();
+  }
 };
 </script>
 
@@ -127,6 +135,9 @@ export default {
   .detail {
     width: 95%;
     margin: 0 auto;
+    h3 {
+      padding-left: 7px;
+    }
     .info {
       padding: 15px 0;
       display: flex;

@@ -3,12 +3,13 @@ import axios from 'axios'
 
 export function request(config) {
     const Axios = axios.create({
+        //搭建的本地服务器
         // baseURL: 'http://localhost:3000/',
-        // baseURL:'http://musicapi.leanapp.cn',
+        //请求别人的服务器
         baseURL: 'http://music.eleuu.com/',
         timeout: 5000
     })
-    Axios.defaults.withCredentials=true
+    Axios.defaults.withCredentials = true
 
     //拦截器 请求前拦截
     Axios.interceptors.request.use(config => {
@@ -17,7 +18,7 @@ export function request(config) {
         //     config.headers.token = localStorage.getItem('Authorization');
         // }
         return config
-  
+
     }, err => {
         console.log(err);
 

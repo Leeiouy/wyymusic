@@ -44,7 +44,7 @@ export default {
       this.$store.commit("isPlay");
     },
     PopupClick() {
-      console.log(123);
+      this.$store.commit("isListShow");
     },
     nextClick() {
       this.$store.commit("nextPlay");

@@ -13,9 +13,11 @@ import { request } from "network/request";
 
 import videoItems from "components/video/videoItems.vue";
 
+
 export default {
   components: {
-    videoItems
+    videoItems,
+
   },
   props: {},
   data() {

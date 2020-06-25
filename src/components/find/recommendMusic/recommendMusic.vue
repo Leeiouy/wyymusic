@@ -10,7 +10,7 @@
 
       <template #btn>
         <i class="iconfont wyyjiediankaishi"></i>
-        <span>播放全部</span>
+        <span @click="playAllMusic">播放全部</span>
       </template>
     </findTitle>
 
@@ -38,6 +38,8 @@
 <script>
 import { request } from "network/request.js";
 
+import { getSongData, getAllData } from "network/getSongData/getSongData.js";
+
 import findTitle from "components/find/common/title.vue";
 
 import songcover from "common/songCover/songCover.vue";
@@ -51,6 +53,7 @@ export default {
   data() {
     return {
       show: false,
+      songData: [],
       recommendedMusic: []
     };
   },
@@ -65,7 +68,17 @@ export default {
   },
   methods: {
     listClick(data) {
-      console.log(data);
+      getSongData(data.id).then(res => {
+        if (res.status == 200) {
+          let result = res.data.songs[0];
+          this.$store.commit("setPlayList", result);
+        }
+      });
+    },
+    playAllMusic() {
+      getAllData.call(this, this.songData);
+
+      console.log(this.songData);
     }
   },
   created() {
@@ -74,6 +87,8 @@ export default {
     }).then(res => {
       if (res.status == 200) {
         let result = res.data.result;
+        this.songData = result;
+
         // 拆分成数组
         for (let i = 0; i < result.length; i += 3) {
           this.recommendedMusic.push(result.slice(i, i + 3));
@@ -97,7 +112,6 @@ export default {
     align-items: center;
     padding: 5px 0;
     &:active {
-      transition: all 0.5s;
       opacity: 0.7;
     }
     .songcover {
