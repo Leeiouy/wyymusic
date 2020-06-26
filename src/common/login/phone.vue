@@ -60,16 +60,14 @@ export default {
           console.log(res);
           if (res.status == 200) {
             let result = res.data;
-
-
           console.log(res);
           
-
             // this.$store.commit("setToken", result.token);
             // this.$store.commit("setProfile", result.profile);
-            // this.$toast.success("登录成功");
 
-            // this.$router.replace("/find");
+            this.$toast.success("登录成功");
+
+            this.$router.replace("/find");
 
             
           } else if (res.statue == 502) {

@@ -6,7 +6,7 @@ vue.use(vueRouter)
 
 const routes = [{
         path: '',
-        redirect: '/find'
+        redirect: '/login'
     },
     {
         path: '/login',
@@ -92,25 +92,16 @@ const router = new vueRouter({
 
 router.beforeEach((to, from, next) => {
 
-    // console.log(to.path);
+    if (to.path == '/profile') {
+        //需要登入才能进入 我的  界面
+        return
 
-    // console.log(from.path);
-
-    // if (to.path == '/playMusicDetails') {
-
-    //     console.log(to);
-    //     if (to.meta.play) {
-    //         next()
-    //     } else {
-    //         next({
-    //             name: 'find'
-    //         })
-    //     }
-    // }
+    } else {
+        next()
+    }
 
 
 
-    next()
 
 
 })

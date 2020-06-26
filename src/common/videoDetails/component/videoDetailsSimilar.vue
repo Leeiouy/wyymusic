@@ -25,7 +25,8 @@ export default {
   },
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+  },
   created() {
     let id = this.$route.params.id;
     request({

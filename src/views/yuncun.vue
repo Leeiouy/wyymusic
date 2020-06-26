@@ -1,10 +1,26 @@
 <template>
   <div id="yuncun" v-if="show">
+    <div class="title">热评墙</div>
+
     <div class="page">
       <span>{{ indexPage }}</span>
       <span>/</span>
       <span>{{ hotComment.length }}</span>
     </div>
+
+    <div class="input">
+      <input v-on="{focus:inputFocus,blur:inputBlur}" type="text" placeholder="说点什么吧~" />
+      <van-icon
+        v-if="!commit"
+        name="chat-o"
+        color="white"
+        :badge="hotComment[indexPage].replyCount"
+      />
+
+      <span class="a4b" @click="submit" v-else>发送</span>
+    </div>
+
+    <scrollRecommand class="hotScroll" :indexPage='indexPage' :hotComment='hotComment'></scrollRecommand>
 
     <van-swipe
       class="my-swipe"
@@ -17,7 +33,16 @@
         <div class="bg" :style="{'background-image': 'url('+item.simpleUserInfo.avatar+')'}"></div>
         <div class="details">
           <p>“</p>
-          <h2>{{ item.content }}</h2>
+
+          <div class="content">
+            <h2>{{ item.content }}</h2>
+
+            <div class="info">
+              <span class="a4b">{{ item.simpleResourceInfo.name }}</span>
+              <span class="a4b">-</span>
+              <span class="a4b">{{ item.simpleResourceInfo.artists[0].name }}</span>
+            </div>
+          </div>
         </div>
       </van-swipe-item>
     </van-swipe>
@@ -26,14 +51,19 @@
 
 <script>
 import { request } from "network/request.js";
+
+import scrollRecommand from "components/yuncun/scrollRecommand.vue";
 export default {
-  components: {},
+  components: {
+    scrollRecommand
+  },
   props: {},
   data() {
     return {
       show: false,
-      hotComment: null,
-      indexPage: 1
+      hotComment: null, //热评数据
+      indexPage: 1,
+      commit: false
     };
   },
   watch: {},
@@ -41,6 +71,14 @@ export default {
   methods: {
     onChange(index) {
       this.indexPage = index + 1;
+      this.commit = false;
+    },
+    inputFocus() {
+      this.commit = true;
+    },
+    inputBlur() {},
+    submit() {
+      this.$toast.fail("未登录！");
     }
   },
   created() {
@@ -68,6 +106,52 @@ export default {
     color: rgba(255, 255, 255, 0.7);
   }
 
+  .title {
+    position: absolute;
+    width: 70px;
+    text-align: center;
+    top: 60px;
+    left: calc(50% - 35px);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    z-index: 2;
+  }
+  .input {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    background-color: rgb(63, 55, 55);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    input {
+      width: 70%;
+      height: 25px;
+      border: none;
+      padding: 10px;
+      background-color: transparent;
+    }
+    i {
+      font-size: 25px;
+    }
+    span {
+      &:active {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  .hotScroll {
+    position: absolute;
+    bottom: 100px;
+    left: 0;
+    right: 0;
+    z-index: 2;
+  }
   .van-swipe-item {
     position: relative;
     width: 100vw;
@@ -97,11 +181,16 @@ export default {
         opacity: 0.5;
         margin-bottom: -50px;
       }
-      h2 {
+      .content {
         width: 85%;
         margin: 0 auto;
         line-height: 25px;
         color: white;
+        .info {
+          &:active {
+            opacity: 0.7;
+          }
+        }
       }
     }
   }

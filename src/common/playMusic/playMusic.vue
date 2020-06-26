@@ -1,5 +1,5 @@
 <template>
-  <div id="playMusic" @click="goMusicDetails">
+  <div id="playMusic" @click="goMusicDetails" v-show="playMusicShow">
     <div class="musicDetails van-hairline--surround" v-if="show">
       <div class="img">
         <img :src="playList[playSongIndex].al.picUrl" />
@@ -53,7 +53,8 @@ export default {
     return {
       audio: "",
       show: false,
-      SongUrl: ""
+      SongUrl: "",
+      playMusicShow: true
     };
   },
   watch: {
@@ -62,6 +63,19 @@ export default {
       this.show = true;
       this.getSong(); //获取音乐数据
       this.getAudioEL(); //获取audio元素，并且绑定事件
+    },
+    "$route.path": function() {
+      let path = this.$route.path;
+
+      if (
+        path == "/video" ||
+        path == "/yuncun" ||
+        path == "/video/details"
+      ) {
+        this.playMusicShow = false;
+      } else {
+        this.playMusicShow = true;
+      }
     }
   },
   computed: {

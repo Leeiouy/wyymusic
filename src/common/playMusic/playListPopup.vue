@@ -12,7 +12,7 @@
         @click="songClick(index)"
       >
         <div :class="{SongActive:index==playSongIndex}">
-          <i class="iconfont wyyshengyin"></i>
+          <i v-show="index==playSongIndex" class="iconfont wyyshengyin"></i>
           <span>{{ item.name }}</span>
           <span>-</span>
           <span class="a4b">{{ item.ar[0].name }}</span>

@@ -33,11 +33,7 @@ export default {
   methods: {
     videoItem() {
       let id = this.videoData.id;
-      console.log(id);
-
       this.$router.replace("/video/details/" + id);
-
-    this.$router.go(0)
     }
   },
   created() {},
