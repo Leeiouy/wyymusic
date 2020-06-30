@@ -77,7 +77,7 @@ export default {
   .Bscroll {
     height: calc(100vh - 48px);
   }
-  h3 {
+  >h3 {
     padding-left: 5%;
   }
 }
@@ -94,6 +94,7 @@ export default {
     width: 60%;
     text-align: left;
     h3 {
+     
       font-size: 16px;
       img {
         height: 18px;

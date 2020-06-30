@@ -146,7 +146,7 @@ export default {
   }
 
   .hotScroll {
-    position: absolute;
+    position: fixed;
     bottom: 100px;
     left: 0;
     right: 0;

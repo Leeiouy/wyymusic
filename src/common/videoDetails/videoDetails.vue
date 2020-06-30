@@ -135,6 +135,7 @@ export default {
   .detail {
     width: 95%;
     margin: 0 auto;
+    padding-bottom: 50px;
     h3 {
       padding-left: 7px;
     }

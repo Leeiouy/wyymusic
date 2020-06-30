@@ -1,7 +1,7 @@
 <template>
   <div class="log">
     <p class="tips f12">手机电脑多端同步，尽享海量高品质音乐</p>
-    <button class="f12 fw">立即登录</button>
+    <button class="f12 fw" @click="login">立即登录</button>
   </div>
 </template>
 
@@ -14,7 +14,11 @@ export default {
   },
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+    login(){
+      // this.$router.replace('/login')
+    }
+  },
   created() {},
   mounted() {}
 };
