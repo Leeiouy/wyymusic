@@ -93,6 +93,9 @@ const router = new vueRouter({
 router.beforeEach((to, from, next) => {
 
     if (to.path == '/profile') {
+
+        next(from.path)
+        // console.log(from.path)
         //需要登入才能进入 我的  界面
         return
 

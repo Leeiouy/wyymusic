@@ -70,7 +70,8 @@ export default {
       if (
         path == "/video" ||
         path == "/yuncun" ||
-        path == "/video/details"
+        path == "/video/details" ||
+        path == "/playMusicDetails"
       ) {
         this.playMusicShow = false;
       } else {

@@ -82,6 +82,8 @@ export default {
   methods: {
     titleClick(index, path) {
       if (index == 0) {
+
+          this.$router.push(path);
         if (document.cookie) {
           this.$toast.success("登录成功，但个人数据接口无效");
         } else {
